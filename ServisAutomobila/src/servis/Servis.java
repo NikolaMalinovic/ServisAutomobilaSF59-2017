@@ -405,10 +405,67 @@ public class Servis {
 			e.printStackTrace();
 		}
 	}
-	
 	//protected ServisnaKnjizica servisnaKnjizica;
+//-------------------------------------UCITAVANJE SERVISNIH KNJIZICA-----------------------------------------
+	public ArrayList<ServisnaKnjizica> getKnjizice() {
+		return servisnaKnjizica;
+	}
 	
+	public void dodajKnjizicu(ServisnaKnjizica knjizica) {
+		this.servisnaKnjizica.add(knjizica);
+	}
 	
+	public void obrisiKnjizicu(ServisnaKnjizica knjizica) {
+		this.servisnaKnjizica.remove(knjizica);
+	}
+	
+	public ServisnaKnjizica nadjiKnjizicu(String naziv) {
+		for(ServisnaKnjizica knjizica: servisnaKnjizica) {
+			if(knjizica.getVlasnik().equalsIgnoreCase(naziv)) {
+				return knjizica;
+			}
+		}
+		return null;
+	}
+	
+/*	public void ucitajKnjizice() {
+		try {
+			File knjiziceFile = new File("src/fajlovi/servisnaKnjizica.txt");
+			BufferedReader br = new BufferedReader(new FileReader(knjiziceFile));
+			String line = null;
+			while((line = br.readLine()) != null) {
+				String[] split = line.split("\\|");
+				
+				String vlasnik = split[0];
+				int markaInt = Integer.parseInt(split[1]);
+				MarkaAutomobila markaAutomobila = MarkaAutomobila.fromInt(markaInt);
+				int modelInt = Integer.parseInt(split[2]);
+				ModelAutomobila modelAutomobila = ModelAutomobila.fromInt(modelInt);
+				double godinaProizvodnje = Double.parseDouble(split[3]);
+				double zapreminaMotora = Double.parseDouble(split[4]);
+				double snagaMotora = Double.parseDouble(split[5]);
+				String vrstaGoriva = split[6];
+				String servisi = split[7];
+				String[] servisiSplit = servisi.split(";");
+				
+				ArrayList<ServisnaKnjizica> knjizice = new ArrayList<ServisnaKnjizica>();
+				for (String k : servisiSplit) {
+					ServisnaKnjizica s = nadjiKnjizicu(k);
+					if(k != null) {
+						knjizice.add(k);
+					}
+			
+				}
+				
+				ServisnaKnjizica knjizica = new ServisnaKnjizica(vlasnik,markaAutomobila,modelAutomobila,godinaProizvodnje,zapreminaMotora,snagaMotora,vrstaGoriva,knjizice);
+				servisnaKnjizica.add(knjizica);
+			}
+			br.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}*/
 	
 	
 	

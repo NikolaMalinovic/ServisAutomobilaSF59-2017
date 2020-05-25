@@ -37,6 +37,8 @@ public abstract class Automobil {
 		this.snagaMotora = snagaMotora;
 		this.vrstaGoriva = vrstaGoriva;
 	}
+	
+	
 	public String getVlasnik() {
 		return vlasnik;
 	}
