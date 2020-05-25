@@ -1,0 +1,4 @@
+Musterija|Milos|Tomac|11712994440084|2|Ljube Stankovica 93F|0653075828|tomac|123|200
+Musterija|bbbb|adad|2313123|1|321321|31231|dada|23131|23131
+Serviser|Nenad|Ralic|17412543980084|2|Ljube Stankovica 92F|0653075820|ralic|123|50000|1
+Administrator|Nikola|Malinovic|11712998800084|2|Ljube Stankovica 91F|0653075829|malina|123|50000

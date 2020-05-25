@@ -1,0 +1,80 @@
+package gui;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+import guiPrikaz.PrikazServisaMusterija;
+import korisnici.Korisnici;
+import servis.Servis;
+
+public class GlavniProzorMusterija extends JFrame {
+
+	private Servis servis;
+	private Korisnici prijavljeniKorisnik;
+	
+	private JMenuBar mainMenu;
+	private JMenu meniMenu;
+	private JMenuItem servisiItem;
+	private JMenuItem odjavaItem;
+	
+	public GlavniProzorMusterija(Servis servis, Korisnici prijavljeniKorisnik) {
+		this.servis = servis;
+		this.prijavljeniKorisnik = prijavljeniKorisnik;
+		setTitle("Restoran - "+ prijavljeniKorisnik.getIme()+" "+prijavljeniKorisnik.getPrezime()+" "+prijavljeniKorisnik.getUloga());
+		
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Dimension resolution = toolkit.getScreenSize();
+		int screenWidth = resolution.width;
+		int screenHeight = resolution.height;
+		setSize(screenWidth / 4, screenHeight / 4);
+		
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setResizable(false);
+		initMenu();
+		initActions();
+	}
+	
+	private void initMenu() {
+		this.mainMenu = new JMenuBar();
+		this.meniMenu = new JMenu("Menu");
+		
+		this.servisiItem = new JMenuItem("Servisi");
+		this.odjavaItem = new JMenuItem("Odjava");
+		setJMenuBar(this.mainMenu);
+		
+		this.meniMenu.add(servisiItem);
+		this.meniMenu.add(odjavaItem);
+		
+		this.mainMenu.add(meniMenu);
+		setJMenuBar(this.mainMenu);
+	}
+	
+private void initActions() {
+		
+		servisiItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			//	PrikazServisaMusterija pSm = new PrikazServisaMusterija(servis, prijavljeniKorisnik);
+			//	pSm.setVisible(true);
+			}
+		});
+		odjavaItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GlavniProzorMusterija.this.setVisible(false);
+				GlavniProzorMusterija.this.dispose();
+				LoginProzor login = new LoginProzor(servis);
+				login.setVisible(true);
+			}
+		});
+		
+	}
+}
