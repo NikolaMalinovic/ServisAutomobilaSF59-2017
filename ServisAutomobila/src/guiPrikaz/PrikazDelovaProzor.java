@@ -95,7 +95,7 @@ public class PrikazDelovaProzor extends JFrame {
 			}
 		});
 		
-btnEdit.addActionListener(new ActionListener() {
+		btnEdit.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

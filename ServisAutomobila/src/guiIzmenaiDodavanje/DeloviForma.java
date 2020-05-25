@@ -80,7 +80,7 @@ public class DeloviForma extends JFrame {
 			ok = false;
 		}
 		try {
-			Long.parseLong(txtCena.getText().trim());
+			Double.parseDouble(txtCena.getText().trim());
 			}catch(NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, 
 						"Cena mora biti ceo broj", "Greska", JOptionPane.WARNING_MESSAGE);
@@ -97,10 +97,10 @@ public class DeloviForma extends JFrame {
 				if (validacija() == true) {
 					String markaInt = cbMarka.getSelectedItem().toString().trim();
 					MarkaAutomobila marka = MarkaAutomobila.valueOf(markaInt);
-					String modelInt = cbMarka.getSelectedItem().toString().trim();
+					String modelInt = cbModel.getSelectedItem().toString().trim();
 					ModelAutomobila model = ModelAutomobila.valueOf(modelInt);
 					String opis = txtOpis.getText().trim();
-					int cena = Integer.parseInt(txtCena.getText().trim());
+					double cena = Double.parseDouble(txtCena.getText().trim());
 					
 					if (servisniDeo == null) {
 						
@@ -117,9 +117,19 @@ public class DeloviForma extends JFrame {
 					DeloviForma.this.setVisible(false);
 				}
 				
-				
+			
 				
 			}
 		});
+		
+		btnCancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				DeloviForma.this.dispose();
+				DeloviForma.this.setVisible(false);
+			}
+		});	
+		
 	}
 }

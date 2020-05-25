@@ -2,10 +2,10 @@ package servisi;
 
 public class ServisniDeo {
 
-	private MarkaAutomobila marka;
-	private ModelAutomobila model;
-	private String deo;
-	private double cena;
+	public MarkaAutomobila marka;
+	public ModelAutomobila model;
+	public String deo;
+	public double cena;
 	
 	public ServisniDeo() {
 		super();

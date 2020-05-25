@@ -16,6 +16,7 @@ import korisnici.SpecijalizacijaServisera;
 import servisi.Automobil;
 import servisi.MarkaAutomobila;
 import servisi.ModelAutomobila;
+import servisi.ServisAutomobila;
 import servisi.ServisnaKnjizica;
 import servisi.ServisniDeo;
 
@@ -28,6 +29,7 @@ public class Servis {
 	private ArrayList<Automobil> automobil;
 	private ArrayList<ServisniDeo> deo;
 	private ArrayList<ServisnaKnjizica> servisnaKnjizica;
+	private ArrayList<ServisAutomobila> servisAutomobila;
 	
 	public Servis() {
 		
@@ -336,7 +338,7 @@ public class Servis {
 			File deloviFile = new File("src/fajlovi/delovi.txt");
 			String content = "";
 			for(ServisniDeo servisniDelovi: deo) {
-				content += "Musterija|" +
+				content += 
 						MarkaAutomobila.toInt(servisniDelovi.getMarka()) + "|" +
 						ModelAutomobila.toInt(servisniDelovi.getModel()) + "|" +
 						servisniDelovi.getDeo() + "|" +
@@ -349,10 +351,62 @@ public class Servis {
 				e.printStackTrace();
 			}
 	}
+//-------------------------------------UCITAVANJE SERVISA-----------------------------------------	
+	public ArrayList<ServisAutomobila> getServise() {
+		return servisAutomobila;
+	}
 	
+	public void dodajServis(ServisAutomobila servis) {
+		this.servisAutomobila.add(servis);
+	}
 	
+	public void obrisiServis(ServisAutomobila servis) {
+		this.servisAutomobila.remove(servis);
+	}
 	
+	public ServisAutomobila nadjiServis(String naziv) {
+		for(ServisAutomobila servis: servisAutomobila) {
+			if(servis.getOpis().equalsIgnoreCase(naziv)) {
+				return servis;
+			}
+		}
+		return null;
+	}
 	
+	public void ucitajServise() {
+		try {
+			File servisiFile = new File("src/fajlovi/servisAutomobila.txt");
+			BufferedReader br = new BufferedReader(new FileReader(servisiFile));
+			String line = null;
+			while((line = br.readLine()) != null) {
+				String[] split = line.split("\\|");
+				
+				String vlasnik = split[0];
+				int markaInt = Integer.parseInt(split[1]);
+				MarkaAutomobila markaAutomobila = MarkaAutomobila.fromInt(markaInt);
+				int modelInt = Integer.parseInt(split[2]);
+				ModelAutomobila modelAutomobila = ModelAutomobila.fromInt(modelInt);
+				double godinaProizvodnje = Double.parseDouble(split[3]);
+				double zapreminaMotora = Double.parseDouble(split[4]);
+				double snagaMotora = Double.parseDouble(split[5]);
+				String vrstaGoriva = split[6];
+				String serviser = split[7];
+				int termin = Integer.parseInt(split[8]);
+				String opis = split[9];
+			//	deo = split[10];
+				boolean status = Boolean.parseBoolean(split[11]);
+				
+				ServisAutomobila servis = new ServisAutomobila(vlasnik,markaAutomobila,modelAutomobila,godinaProizvodnje,zapreminaMotora,snagaMotora,vrstaGoriva,serviser,termin,opis,deo,status);
+				servisAutomobila.add(servis);
+			}
+			br.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//protected ServisnaKnjizica servisnaKnjizica;
 	
 	
 	

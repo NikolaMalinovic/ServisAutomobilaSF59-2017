@@ -14,6 +14,7 @@ import guiPrikaz.PrikazAdministratoraProzor;
 import guiPrikaz.PrikazAutomobilaProzor;
 import guiPrikaz.PrikazDelovaProzor;
 import guiPrikaz.PrikazMusterijaProzor;
+import guiPrikaz.PrikazServisaAdministrator;
 import guiPrikaz.PrikazServiseraProzor;
 import korisnici.Korisnici;
 import servis.Servis;
@@ -155,8 +156,8 @@ public class GlavniProzorAdministrator extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			//	PrikazServisaProzor  pS = new PrikazServisaProzor(servis);
-			//	pS.setVisible(true);
+				PrikazServisaAdministrator  pSa = new PrikazServisaAdministrator(servis);
+				pSa.setVisible(true);
 				
 			}
 		});

@@ -4,14 +4,14 @@ package servisi;
 
 public abstract class Automobil {
 
-	protected String vlasnik;
-	protected MarkaAutomobila marka;
-	protected ModelAutomobila model;
-	protected double godinaProizvodnje;
-	protected double zapreminaMotora;
-	protected double snagaMotora;
-	protected String vrstaGoriva;
-	protected ServisnaKnjizica servisnaKnjizica;
+	public String vlasnik;
+	public MarkaAutomobila marka;
+	public ModelAutomobila model;
+	public double godinaProizvodnje;
+	public double zapreminaMotora;
+	public double snagaMotora;
+	public String vrstaGoriva;
+	public ServisnaKnjizica servisnaKnjizica;
 	
 	
 	public Automobil() {
