@@ -194,6 +194,7 @@ public class MusterijeForma extends JFrame {
 						musterija.setIme(ime);
 						musterija.setPrezime(prezime);
 						musterija.setJmbg(jmbg);
+						musterija.setPol(pol);
 						musterija.setAdresa(adresa);
 						musterija.setKorIme(korime);
 						musterija.setLozinka(lozinka);
@@ -207,6 +208,14 @@ public class MusterijeForma extends JFrame {
 				
 			}
 		});
+		btnCancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				MusterijeForma.this.dispose();
+				MusterijeForma.this.setVisible(false);
+			}
+		});	
 	};
 	
 	

@@ -194,11 +194,13 @@ public class ServiseriForma extends JFrame {
 						serviser.setIme(ime);
 						serviser.setPrezime(prezime);
 						serviser.setJmbg(jmbg);
+						serviser.setPol(pol);
 						serviser.setAdresa(adresa);
 						serviser.setKorIme(korime);
 						serviser.setLozinka(lozinka);
 						serviser.setBrojTelefona(brojtelefona);
 						serviser.setPlata(plata);
+						serviser.setSpecijalizacija(specijalizacijaServisera);
 						
 					}
 					servis.snimiKorisnika();
@@ -208,6 +210,15 @@ public class ServiseriForma extends JFrame {
 				
 			}
 		});
+		
+		btnCancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ServiseriForma.this.dispose();
+				ServiseriForma.this.setVisible(false);
+			}
+		});	
 	};
 	
 	

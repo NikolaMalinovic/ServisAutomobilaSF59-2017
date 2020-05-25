@@ -11,6 +11,7 @@ public abstract class Automobil {
 	protected double zapreminaMotora;
 	protected double snagaMotora;
 	protected String vrstaGoriva;
+	protected ServisnaKnjizica servisnaKnjizica;
 	
 	
 	public Automobil() {

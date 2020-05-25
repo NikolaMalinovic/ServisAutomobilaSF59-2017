@@ -186,6 +186,7 @@ public class AdministratoriForma extends JFrame {
 						administrator.setIme(ime);
 						administrator.setPrezime(prezime);
 						administrator.setJmbg(jmbg);
+						administrator.setPol(pol);
 						administrator.setAdresa(adresa);
 						administrator.setKorIme(korime);
 						administrator.setLozinka(lozinka);
@@ -199,6 +200,14 @@ public class AdministratoriForma extends JFrame {
 				
 			}
 		});
+		btnCancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				AdministratoriForma.this.dispose();
+				AdministratoriForma.this.setVisible(false);
+			}
+		});	
 	};
 	
 	
