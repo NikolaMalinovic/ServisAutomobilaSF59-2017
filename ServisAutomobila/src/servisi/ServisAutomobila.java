@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ServisAutomobila extends Automobil{
 
-	protected String serviser;
+	protected String serviser; //serviser
 	protected int termin;
 	protected String opis;
 	protected ArrayList<ServisniDeo> delovi;

@@ -75,6 +75,7 @@ public class PrikazAutomobilaProzor extends JFrame {
 			podaci[i][4] = automobil.getZapreminaMotora();
 			podaci[i][5] = automobil.getSnagaMotora();
 			podaci[i][6] = automobil.getVrstaGoriva();
+			
 		}
 		
 		tableModel = new DefaultTableModel(podaci,zaglavlje);
@@ -93,8 +94,8 @@ public class PrikazAutomobilaProzor extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			//	AutomobiliForma aF = new AutomobiliForma(servis, null);
-			//	aF.setVisible(true);
+				AutomobiliForma aF = new AutomobiliForma(servis, null);
+				aF.setVisible(true);
 				
 			}
 		});
@@ -110,8 +111,8 @@ public class PrikazAutomobilaProzor extends JFrame {
 					String naziv = model.getValueAt(red, 0).toString();
 					Automobil automobil = servis.nadjiAutomobil(naziv);
 					if(automobil != null) {
-					//	AutomobiliForma aF = new AutomobiliForma(servis, automobil);
-					//	aF.setVisible(true);
+						AutomobiliForma aF = new AutomobiliForma(servis, automobil);
+						aF.setVisible(true);
 					}else {
 						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabrani automobil.", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
@@ -135,7 +136,7 @@ public class PrikazAutomobilaProzor extends JFrame {
 						if(izbor == JOptionPane.YES_OPTION) {
 							servis.getAutomobil().remove(naziv);
 							model.removeRow(red);
-						//	servis.snimiAutomobile();
+							servis.snimiAutomobil();
 						}
 					}else {
 						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabrani automobil!", "Greska", JOptionPane.ERROR_MESSAGE);

@@ -1,1 +1,2 @@
-Nikola Malinovic|1|1|2005|2000|100|Benzin
+Nikola Malinovic|1|1|2005|2200|105|1
+Marinko Malinovic|3|3|2013|2500|155|2

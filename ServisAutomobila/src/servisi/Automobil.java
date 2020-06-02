@@ -4,15 +4,15 @@ package servisi;
 
 public abstract class Automobil {
 
-	public String vlasnik;
+	public String vlasnik; //musterija
 	public MarkaAutomobila marka;
 	public ModelAutomobila model;
-	public double godinaProizvodnje;
-	public double zapreminaMotora;
-	public double snagaMotora;
-	public String vrstaGoriva;
-	public ServisnaKnjizica servisnaKnjizica;
-	
+	public int godinaProizvodnje;
+	public int zapreminaMotora;
+	public int snagaMotora;
+	public VrstaGoriva vrstaGoriva;
+	//public ServisnaKnjizica servisnaKnjizica;
+//	public String servisnaKnjizica;
 	
 	public Automobil() {
 		
@@ -22,12 +22,13 @@ public abstract class Automobil {
 		this.godinaProizvodnje = 0;
 		this.zapreminaMotora = 0;
 		this.snagaMotora = 0;
-		this.vrstaGoriva = "";
+		this.vrstaGoriva = VrstaGoriva.BENZIN;
+		
 	}
 	
 	
-	public Automobil(String vlasnik, MarkaAutomobila marka, ModelAutomobila model, double godinaProizvodnje,
-			double zapreminaMotora, double snagaMotora, String vrstaGoriva) {
+	public Automobil(String vlasnik, MarkaAutomobila marka, ModelAutomobila model, int godinaProizvodnje,
+			int zapreminaMotora, int snagaMotora, VrstaGoriva vrstaGoriva) {
 		super();
 		this.vlasnik = vlasnik;
 		this.marka = marka;
@@ -36,6 +37,7 @@ public abstract class Automobil {
 		this.zapreminaMotora = zapreminaMotora;
 		this.snagaMotora = snagaMotora;
 		this.vrstaGoriva = vrstaGoriva;
+		
 	}
 	
 	
@@ -57,32 +59,34 @@ public abstract class Automobil {
 	public void setModel(ModelAutomobila model) {
 		this.model = model;
 	}
-	public double getGodinaProizvodnje() {
+	public int getGodinaProizvodnje() {
 		return godinaProizvodnje;
 	}
-	public void setGodinaProizvodnje(double godinaProizvodnje) {
+	public void setGodinaProizvodnje(int godinaProizvodnje) {
 		this.godinaProizvodnje = godinaProizvodnje;
 	}
-	public double getZapreminaMotora() {
+	public int getZapreminaMotora() {
 		return zapreminaMotora;
 	}
-	public void setZapreminaMotora(double zapreminaMotora) {
+	public void setZapreminaMotora(int zapreminaMotora) {
 		this.zapreminaMotora = zapreminaMotora;
 	}
-	public double getSnagaMotora() {
+	public int getSnagaMotora() {
 		return snagaMotora;
 	}
-	public void setSnagaMotora(double snagaMotora) {
+	public void setSnagaMotora(int snagaMotora) {
 		this.snagaMotora = snagaMotora;
 	}
-	public String getVrstaGoriva() {
+	public VrstaGoriva getVrstaGoriva() {
 		return vrstaGoriva;
 	}
-	public void setVrstaGoriva(String vrstaGoriva) {
+	public void setVrstaGoriva(VrstaGoriva vrstaGoriva) {
 		this.vrstaGoriva = vrstaGoriva;
 	}
 	
 	
+	
+
 	@Override
 	public String toString() {
 		return "Automobil [vlasnik=" + vlasnik + ", marka=" + marka + ", model=" + model + ", godinaProizvodnje="

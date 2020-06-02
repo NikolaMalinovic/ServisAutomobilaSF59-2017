@@ -19,6 +19,7 @@ import servisi.ModelAutomobila;
 import servisi.ServisAutomobila;
 import servisi.ServisnaKnjizica;
 import servisi.ServisniDeo;
+import servisi.VrstaGoriva;
 
 public class Servis {
 	
@@ -271,10 +272,13 @@ public class Servis {
 				MarkaAutomobila markaAutomobila = MarkaAutomobila.fromInt(markaInt);
 				int modelInt = Integer.parseInt(split[2]);
 				ModelAutomobila modelAutomobila = ModelAutomobila.fromInt(modelInt);
-				double godinaProizvodnje = Double.parseDouble(split[3]);
-				double zapreminaMotora = Double.parseDouble(split[4]);
-				double snagaMotora = Double.parseDouble(split[5]);
-				String vrstaGoriva = split[6];
+				int godinaProizvodnje = Integer.parseInt(split[3]);
+				int zapreminaMotora = Integer.parseInt(split[4]);
+				int snagaMotora = Integer.parseInt(split[5]);
+				int gorivoInt = Integer.parseInt(split[6]);
+				VrstaGoriva vrstaGoriva = VrstaGoriva.fromInt(gorivoInt);
+				
+			//	ArrayList<ServisnaKnjizica> servisnaKnjizica = new ArrayList<ServisnaKnjizica>();
 				Automobil automobili = new Automobil(vlasnik,markaAutomobila,modelAutomobila,godinaProizvodnje,zapreminaMotora,snagaMotora,vrstaGoriva) {};
 				automobil.add(automobili);
 				
@@ -288,6 +292,30 @@ public class Servis {
 			e.printStackTrace();
 		}
 	}
+	
+	
+//-------------------------------------SNIMI AUTOMOBIL-----------------------------------------	
+		public void snimiAutomobil() {
+			try {
+				File automobiliFile = new File("src/fajlovi/automobili.txt");
+				String content = "";
+				for(Automobil auto: automobil) {
+					content += 
+							auto.getVlasnik() + "|" +
+							MarkaAutomobila.toInt(auto.getMarka()) + "|" +
+							ModelAutomobila.toInt(auto.getModel()) + "|" +
+							auto.getGodinaProizvodnje() + "|" +
+							auto.getZapreminaMotora() + "|" +
+							auto.getSnagaMotora() + "|" +
+							VrstaGoriva.toInt(auto.getVrstaGoriva()) +  "\n";
+				}
+				BufferedWriter bw = new BufferedWriter(new FileWriter(automobiliFile));
+				bw.write(content);
+				bw.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+		}
 //-------------------------------------UCITAVANJE DELOVA-----------------------------------------
 	public ArrayList<ServisniDeo> getDelovi() {
 		return deo;
@@ -393,7 +421,7 @@ public class Servis {
 				String serviser = split[7];
 				int termin = Integer.parseInt(split[8]);
 				String opis = split[9];
-			//	deo = split[10];
+				ArrayList<ServisniDeo> deo = new ArrayList<ServisniDeo>();
 				boolean status = Boolean.parseBoolean(split[11]);
 				
 				ServisAutomobila servis = new ServisAutomobila(vlasnik,markaAutomobila,modelAutomobila,godinaProizvodnje,zapreminaMotora,snagaMotora,vrstaGoriva,serviser,termin,opis,deo,status);
@@ -428,7 +456,7 @@ public class Servis {
 		return null;
 	}
 	
-/*	public void ucitajKnjizice() {
+	public void ucitajKnjizice() {
 		try {
 			File knjiziceFile = new File("src/fajlovi/servisnaKnjizica.txt");
 			BufferedReader br = new BufferedReader(new FileReader(knjiziceFile));
@@ -445,27 +473,28 @@ public class Servis {
 				double zapreminaMotora = Double.parseDouble(split[4]);
 				double snagaMotora = Double.parseDouble(split[5]);
 				String vrstaGoriva = split[6];
-				String servisi = split[7];
-				String[] servisiSplit = servisi.split(";");
+			//	ArrayList<ServisnaKnjizica> servisi = new ArrayList<ServisnaKnjizica>();
+			//	String servisi = split[7];
+			//	String[] servisiSplit = servisi.split(";");
 				
-				ArrayList<ServisnaKnjizica> knjizice = new ArrayList<ServisnaKnjizica>();
-				for (String k : servisiSplit) {
+			//	ArrayList<ServisnaKnjizica> knjizice = new ArrayList<ServisnaKnjizica>();
+				/*for (String k : servisiSplit) {
 					ServisnaKnjizica s = nadjiKnjizicu(k);
 					if(k != null) {
 						knjizice.add(k);
 					}
 			
-				}
+				}*/
 				
-				ServisnaKnjizica knjizica = new ServisnaKnjizica(vlasnik,markaAutomobila,modelAutomobila,godinaProizvodnje,zapreminaMotora,snagaMotora,vrstaGoriva,knjizice);
-				servisnaKnjizica.add(knjizica);
+			//	ServisnaKnjizica knjizica = new ServisnaKnjizica(vlasnik,markaAutomobila,modelAutomobila,godinaProizvodnje,zapreminaMotora,snagaMotora,vrstaGoriva);
+			//	servisnaKnjizica.add(knjizica);
 			}
 			br.close();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
 	
 	
