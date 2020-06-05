@@ -2,6 +2,7 @@ package guiIzmenaiDodavanje;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,12 +16,14 @@ import servis.Servis;
 import servisi.Automobil;
 import servisi.MarkaAutomobila;
 import servisi.ModelAutomobila;
+import servisi.ServisnaKnjizica;
 import servisi.ServisniDeo;
 import servisi.VrstaGoriva;
 
 public class AutomobiliForma extends JFrame {
 	
-	
+	private JLabel lblId = new JLabel("Identifikacioni kod");
+	private JTextField txtId = new JTextField(10);
 	private JLabel lblVlasnik = new JLabel("Vlasnik");
 	private JTextField txtVlasnik = new JTextField(20);
 	private JLabel lblMarka = new JLabel("Marka automobila");
@@ -35,6 +38,8 @@ public class AutomobiliForma extends JFrame {
 	private JTextField txtSnagaMotora = new JTextField(10);
 	private JLabel lblVrstaGoriva = new JLabel("Vrsta goriva");
 	private JComboBox<VrstaGoriva> cbVrstaGoriva = new JComboBox<VrstaGoriva>(VrstaGoriva.values());
+	private JLabel lblIdKnjizice = new JLabel("Identifikacioni kod knjizice");
+	private JTextField txtIdKnjizice = new JTextField(10);
 	
 	
 	private JButton btnOk = new JButton("OK");
@@ -64,12 +69,18 @@ public class AutomobiliForma extends JFrame {
 		setLayout(layout);
 		
 		if(this.automobil != null) {
+			txtId.setText(this.automobil.getIdentifikacioniKod());
+			txtId.setEnabled(false);
 			txtVlasnik.setText(this.automobil.getVlasnik());
 			txtGodinaProizvodnje.setText(String.valueOf(this.automobil.getGodinaProizvodnje()));
 			txtZapreminaMotora.setText(String.valueOf(this.automobil.getZapreminaMotora()));
 			txtSnagaMotora.setText(String.valueOf(this.automobil.getSnagaMotora()));
+			txtIdKnjizice.setText(this.automobil.getIdentifikacioniKod());
+			txtIdKnjizice.setEnabled(false);
+			
 		}
 		
+		add(lblId); add(txtId);
 		add(lblVlasnik); add(txtVlasnik);
 		add(lblMarka); add(cbMarka);
 		add(lblModel); add(cbModel);
@@ -77,6 +88,7 @@ public class AutomobiliForma extends JFrame {
 		add(lblZapreminaMotora); add(txtZapreminaMotora);
 		add(lblSnagaMotora);	add(txtSnagaMotora);
 		add(lblVrstaGoriva);	add(cbVrstaGoriva);
+		add(lblIdKnjizice);		add(txtIdKnjizice);
 		add(new JLabel()); add(btnOk,"split 2"); add(btnCancel);
 	}
 	private boolean validacija() {
@@ -137,6 +149,7 @@ public class AutomobiliForma extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (validacija() == true) {
+					String id = txtId.getText().trim();
 					String vlasnik = txtVlasnik.getText().trim();
 					String markaInt = cbMarka.getSelectedItem().toString().trim();
 					MarkaAutomobila marka = MarkaAutomobila.valueOf(markaInt);
@@ -148,9 +161,10 @@ public class AutomobiliForma extends JFrame {
 					String vrstaGorivaInt = cbVrstaGoriva.getSelectedItem().toString().trim();
 					VrstaGoriva vrstaGoriva = VrstaGoriva.valueOf(vrstaGorivaInt);
 					
+					
 					if (automobil == null) {
 						
-						automobil = new Automobil(vlasnik,marka,model,godinaProizvodnje,zapreminaMotora,snagaMotora,vrstaGoriva) {};
+						automobil = new Automobil(id,vlasnik,marka,model,godinaProizvodnje,zapreminaMotora,snagaMotora,vrstaGoriva,new ArrayList<ServisnaKnjizica>()) {};
 						servis.getAutomobil().add(automobil);
 					}else {
 						automobil.setVlasnik(vlasnik);

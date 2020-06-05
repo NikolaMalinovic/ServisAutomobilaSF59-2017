@@ -12,6 +12,7 @@ public class mainServis {
 		servis.ucitajAutomobile();
 		servis.ucitajDelove();
 		servis.ucitajServise();
+		servis.ucitajKnjizice();
 		
 		LoginProzor login = new LoginProzor(servis);
 		login.setVisible(true);

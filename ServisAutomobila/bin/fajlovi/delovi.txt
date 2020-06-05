@@ -1,3 +1,4 @@
-1|1|Kocnice|15500.0
+3|3|Kocnice|13500.0
 1|1|Kvacilo|20000.0
 2|2|Turbina|15000.0
+3|3|Kocnice|15000.0

@@ -16,6 +16,7 @@ import guiPrikaz.PrikazDelovaProzor;
 import guiPrikaz.PrikazMusterijaProzor;
 import guiPrikaz.PrikazServisaAdministrator;
 import guiPrikaz.PrikazServiseraProzor;
+import guiPrikaz.PrikazServisnihKnjizicaProzor;
 import korisnici.Korisnici;
 import servis.Servis;
 
@@ -146,8 +147,8 @@ public class GlavniProzorAdministrator extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			//	PrikazServisnihKnjizicaProzor pSK = new PrikazServisnihKnjizicaProzor(servis);
-			//	pSK.setVisible(true);
+				PrikazServisnihKnjizicaProzor pSK = new PrikazServisnihKnjizicaProzor(servis);
+				pSK.setVisible(true);
 				
 			}
 		});

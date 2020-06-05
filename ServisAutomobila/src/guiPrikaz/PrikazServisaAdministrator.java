@@ -16,9 +16,10 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-
+import guiIzmenaiDodavanje.ServisAutomobilaForma;
 import servis.Servis;
 import servisi.ServisAutomobila;
+import servisi.ServisnaKnjizica;
 
 
 public class PrikazServisaAdministrator extends JFrame {
@@ -61,23 +62,26 @@ public class PrikazServisaAdministrator extends JFrame {
 		mainToolbar.add(btnDelete);
 		add(mainToolbar, BorderLayout.NORTH);
 		
-		String[] zaglavlje = new String[] {"Vlasnik","Marka","Model","Godina proizvodnje","Zapremina motora","Snaga motora","Vrsta goriva","Serviser","Termin","Opis","Delovi","Status"};
+		String[] zaglavlje = new String[] {"Identifikacioni kod","Vlasnik","Marka","Model","Godina proizvodnje","Zapremina motora","Snaga motora","Vrsta goriva","Serviser","Termin","Opis","Deo","Status","Servisna knjizica"};
 		Object[][] podaci = new Object[this.servis.getServise().size()][zaglavlje.length];
 		
 		for(int i=0; i<this.servis.getServise().size(); i++) {
 			ServisAutomobila servisAutomobila = this.servis.getServise().get(i);
-			podaci[i][0] = servisAutomobila.getVlasnik();
-			podaci[i][1] = servisAutomobila.getMarka();
-			podaci[i][2] = servisAutomobila.getModel();
-			podaci[i][3] = servisAutomobila.getGodinaProizvodnje();
-			podaci[i][4] = servisAutomobila.getZapreminaMotora();
-			podaci[i][5] = servisAutomobila.getSnagaMotora();
-			podaci[i][6] = servisAutomobila.getVrstaGoriva();
-			podaci[i][7] = servisAutomobila.getServiser();
-			podaci[i][8] = servisAutomobila.getTermin();
-			podaci[i][9] = servisAutomobila.getOpis();
-			podaci[i][10] = servisAutomobila.getDelovi();
-			podaci[i][11] = servisAutomobila.isStatus();
+			ServisnaKnjizica servisnaKnjizica = servis.pronadjiKnjizicu(servisAutomobila);
+			podaci[i][0] = servisAutomobila.getIdentifikacioniKod();
+			podaci[i][1] = servisAutomobila.getVlasnik();
+			podaci[i][2] = servisAutomobila.getMarka();
+			podaci[i][3] = servisAutomobila.getModel();
+			podaci[i][4] = servisAutomobila.getGodinaProizvodnje();
+			podaci[i][5] = servisAutomobila.getZapreminaMotora();
+			podaci[i][6] = servisAutomobila.getSnagaMotora();
+			podaci[i][7] = servisAutomobila.getVrstaGoriva();
+			podaci[i][8] = servisAutomobila.getServiser();
+			podaci[i][9] = servisAutomobila.getTermin();
+			podaci[i][10] = servisAutomobila.getOpis();
+			podaci[i][11] = servisAutomobila.getDelovi();
+			podaci[i][12] = servisAutomobila.getStatus();
+			podaci[i][13] = servisnaKnjizica == null ? "--" : servisnaKnjizica.getIdKnjizica();
 			
 			
 		}
@@ -98,8 +102,8 @@ public class PrikazServisaAdministrator extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			//	ServisiForma sF = new ServisiForma(servis, null);
-			//	sF.setVisible(true);
+				ServisAutomobilaForma sF = new ServisAutomobilaForma(servis, null);
+				sF.setVisible(true);
 				
 			}
 		});
@@ -113,11 +117,11 @@ public class PrikazServisaAdministrator extends JFrame {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.","Greska",JOptionPane.WARNING_MESSAGE);
 				}else {
 					DefaultTableModel model = (DefaultTableModel)servisiTablela.getModel();
-					String opis = model.getValueAt(red, 9).toString();
-					ServisAutomobila s = servis.nadjiServis(opis);
+					String id = model.getValueAt(red, 0).toString();
+					ServisAutomobila s = servis.nadjiServis(id);
 					if(s != null) {
-					//	ServisiForma sF = new ServisiForma(servis, s);
-					//	sF.setVisible(true);
+						ServisAutomobilaForma sF = new ServisAutomobilaForma(servis, s);
+						sF.setVisible(true);
 					}else {
 						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabrani automobil.", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
@@ -125,7 +129,7 @@ public class PrikazServisaAdministrator extends JFrame {
 				
 			}
 		});
-	/*	btnDelete.addActionListener(new ActionListener() {
+		btnDelete.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -134,14 +138,14 @@ public class PrikazServisaAdministrator extends JFrame {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
 					DefaultTableModel model = (DefaultTableModel)servisiTablela.getModel();
-					String opis = model.getValueAt(red, 9).toString();
-					ServisniDeo s = servis.nadjiDeo(opis);
+					String id = model.getValueAt(red, 0).toString();
+					ServisAutomobila s = servis.nadjiServis(id);
 					if(s != null) {
-						int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete automobil", s.getModel() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+						int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete automobil", s.getIdentifikacioniKod() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
 						if(izbor == JOptionPane.YES_OPTION) {
-							servis.getAutomobil().remove(s);
+							servis.getServise().remove(s);
 							model.removeRow(red);
-							servis.snimiServis();
+							servis.snimiServisAutomobila();
 						}
 					}else {
 						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabrani automobil!", "Greska", JOptionPane.ERROR_MESSAGE);
@@ -149,6 +153,6 @@ public class PrikazServisaAdministrator extends JFrame {
 				}
 				
 			}
-		});*/
+		});
 	}
 }

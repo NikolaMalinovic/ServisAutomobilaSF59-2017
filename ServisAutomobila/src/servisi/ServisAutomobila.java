@@ -5,42 +5,34 @@ import java.util.ArrayList;
 
 public class ServisAutomobila extends Automobil{
 
-	protected String serviser; //serviser
-	protected int termin;
-	protected String opis;
-	protected ArrayList<ServisniDeo> delovi;
-	protected boolean status;
+	public String serviser; //serviser
+	public String termin;
+	public String opis;
+	public String delovi;
+	public String status;
 	
 	public ServisAutomobila() {
 		this.serviser = "";
-		this.termin = 0;
+		this.termin = "";
 		this.opis = "";
-		this.status = false;
+		this.status = "";
+		this.delovi ="";
 		
 	}
 
-	
-	
-	
-	
 
-
-	public ServisAutomobila(String vlasnik, MarkaAutomobila marka, ModelAutomobila model, double godinaProizvodnje,
-			double zapreminaMotora, double snagaMotora, String vrstaGoriva, String serviser, int termin, String opis,
-			ArrayList<ServisniDeo> delovi, boolean status) {
-		super(vlasnik, marka, model, godinaProizvodnje, zapreminaMotora, snagaMotora, vrstaGoriva);
-		this.serviser = serviser;
-		this.termin = termin;
-		this.opis = opis;
-		this.delovi = delovi;
-		this.status = status;
+	public ServisAutomobila(String identifikacioniKod,String vlasnik, MarkaAutomobila marka, ModelAutomobila model, int godinaProizvodnje,
+			int zapreminaMotora, int snagaMotora, VrstaGoriva vrstaGoriva,ArrayList<ServisnaKnjizica> servisnaKnjizica,String serviser,String termin,String opis,String status,String delovi) {
+		super(identifikacioniKod,vlasnik, marka, model, godinaProizvodnje, zapreminaMotora, snagaMotora, vrstaGoriva, servisnaKnjizica);
+			this.serviser = serviser;
+			this.termin = termin;
+			this.opis = opis;
+			this.delovi = delovi;
+			this.status = status;
 	}
 
 
-
-
-
-
+	
 
 	public String getServiser() {
 		return serviser;
@@ -50,11 +42,11 @@ public class ServisAutomobila extends Automobil{
 		this.serviser = serviser;
 	}
 
-	public int getTermin() {
+	public String getTermin() {
 		return termin;
 	}
 
-	public void setTermin(int termin) {
+	public void setTermin(String termin) {
 		this.termin = termin;
 	}
 
@@ -66,19 +58,19 @@ public class ServisAutomobila extends Automobil{
 		this.opis = opis;
 	}
 
-	public ArrayList<ServisniDeo> getDelovi() {
+	public String getDelovi() {
 		return delovi;
 	}
 
-	public void setDelovi(ArrayList<ServisniDeo> delovi) {
+	public void setDelovi(String delovi) {
 		this.delovi = delovi;
 	}
 
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -91,9 +83,9 @@ public class ServisAutomobila extends Automobil{
 	@Override
 	public String toString() {
 		return "ServisAutomobila [serviser=" + serviser + ", termin=" + termin + ", opis=" + opis + ", delovi=" 
-				+ delovi + ", status=" + status + ", vlasnik=" + vlasnik + ", marka=" + marka + ", model=" 
+				+ delovi + ", status=" + status + ",identifikacioniKod=" + identifikacioniKod + ",  vlasnik=" + vlasnik + ", marka=" + marka + ", model=" 
 				+ model + ", godinaProizvodnje=" + godinaProizvodnje + ", zapreminaMotora=" + zapreminaMotora + ", snagaMotora=" 
-				+ snagaMotora +", vrstaGoriva=" + vrstaGoriva + "]";
+				+ snagaMotora +", vrstaGoriva=" + vrstaGoriva + ",servisnaKnjizica=" + servisnaKnjizica + "]";
 	}
 
 

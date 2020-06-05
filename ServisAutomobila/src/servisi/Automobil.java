@@ -1,21 +1,24 @@
 package servisi;
 
+import java.util.ArrayList;
 
+public class Automobil {
 
-public abstract class Automobil {
-
-	public String vlasnik; //musterija
-	public MarkaAutomobila marka;
-	public ModelAutomobila model;
-	public int godinaProizvodnje;
-	public int zapreminaMotora;
-	public int snagaMotora;
-	public VrstaGoriva vrstaGoriva;
+	protected String identifikacioniKod;
+	protected String vlasnik; //musterija
+	protected MarkaAutomobila marka;
+	protected ModelAutomobila model;
+	protected int godinaProizvodnje;
+	protected int zapreminaMotora;
+	protected int snagaMotora;
+	protected VrstaGoriva vrstaGoriva;
+	protected ArrayList<ServisnaKnjizica> servisnaKnjizica;
 	//public ServisnaKnjizica servisnaKnjizica;
 //	public String servisnaKnjizica;
 	
 	public Automobil() {
 		
+		this.identifikacioniKod = "";
 		this.vlasnik = "";
 		this.marka = MarkaAutomobila.FIAT;
 		this.model = ModelAutomobila.STILO;
@@ -23,13 +26,15 @@ public abstract class Automobil {
 		this.zapreminaMotora = 0;
 		this.snagaMotora = 0;
 		this.vrstaGoriva = VrstaGoriva.BENZIN;
+		this.servisnaKnjizica = new ArrayList<ServisnaKnjizica>();
 		
 	}
 	
 	
-	public Automobil(String vlasnik, MarkaAutomobila marka, ModelAutomobila model, int godinaProizvodnje,
-			int zapreminaMotora, int snagaMotora, VrstaGoriva vrstaGoriva) {
+	public Automobil(String identifikacioniKod,String vlasnik, MarkaAutomobila marka, ModelAutomobila model, int godinaProizvodnje,
+			int zapreminaMotora, int snagaMotora, VrstaGoriva vrstaGoriva, ArrayList<ServisnaKnjizica> servisnaKnjizica) {
 		super();
+		this.identifikacioniKod = identifikacioniKod;
 		this.vlasnik = vlasnik;
 		this.marka = marka;
 		this.model = model;
@@ -41,6 +46,28 @@ public abstract class Automobil {
 	}
 	
 	
+	
+	
+	public ArrayList<ServisnaKnjizica> getServisnaKnjizica() {
+		return servisnaKnjizica;
+	}
+
+
+	public void setServisnaKnjizica(ArrayList<ServisnaKnjizica> servisnaKnjizica) {
+		this.servisnaKnjizica = servisnaKnjizica;
+	}
+
+
+	public String getIdentifikacioniKod() {
+		return identifikacioniKod;
+	}
+
+
+	public void setIdentifikacioniKod(String identifikacioniKod) {
+		this.identifikacioniKod = identifikacioniKod;
+	}
+
+
 	public String getVlasnik() {
 		return vlasnik;
 	}
@@ -89,9 +116,9 @@ public abstract class Automobil {
 
 	@Override
 	public String toString() {
-		return "Automobil [vlasnik=" + vlasnik + ", marka=" + marka + ", model=" + model + ", godinaProizvodnje="
+		return "Automobil [identifikacioniKod=" + identifikacioniKod + ", vlasnik=" + vlasnik + ", marka=" + marka + ", model=" + model + ", godinaProizvodnje="
 				+ godinaProizvodnje + ", zapreminaMotora=" + zapreminaMotora + ", snagaMotora=" + snagaMotora
-				+ ", vrstaGoriva=" + vrstaGoriva + "]";
+				+ ", vrstaGoriva=" + vrstaGoriva + ",servisnaKnjizica=" + servisnaKnjizica + "]";
 	}
 	
 	

@@ -2,41 +2,103 @@ package servisi;
 
 import java.util.ArrayList;
 
-public class ServisnaKnjizica extends Automobil {
 
-//	ArrayList<ServisAutomobila> servisi;
 
-/*	public ServisnaKnjizica() {
-		this.servisi = new ArrayList<ServisAutomobila>();
+public class ServisnaKnjizica   {
+	
+	public String idKnjizica;
+	public String automobili;
+	ArrayList<ServisAutomobila> servisAutomobila;
+
+	public ServisnaKnjizica() {
+		this.idKnjizica = "";
+		this.automobili = "";
+		this.servisAutomobila = new ArrayList<ServisAutomobila>();
+	}
+	
+	public ServisnaKnjizica(String idKnjizica, String automobili, ArrayList<ServisAutomobila> servisAutomobila) {
+		super();
+		this.idKnjizica = idKnjizica;
+		this.automobili = automobili;
+		this.servisAutomobila = servisAutomobila;
 	}
 	
 	
 	
+
 	
-	public ServisnaKnjizica(String vlasnik, MarkaAutomobila marka, ModelAutomobila model, double godinaProizvodnje,
-			double zapreminaMotora, double snagaMotora, String vrstaGoriva, ArrayList<ServisnaKnjizica> servisi) {
-		super(vlasnik, marka, model, godinaProizvodnje, zapreminaMotora, snagaMotora, vrstaGoriva);
-		
+
+
+	
+
+
+
+	
+
+
+
+	public String getAutomobili() {
+		return automobili;
 	}
 
-	
+	public void setAutomobili(String automobili) {
+		this.automobili = automobili;
+	}
 
+	public String getIdKnjizica() {
+		return idKnjizica;
+	}
+
+
+
+
+
+
+
+
+
+	public void setIdKnjizica(String idKnjizica) {
+		this.idKnjizica = idKnjizica;
+	}
+
+
+
+
+
+
+
+
+
+	public ArrayList<ServisAutomobila> getServisAutomobila() {
+		return servisAutomobila;
+	}
+
+
+
+
+
+
+
+
+
+	public void setServisAutomobila(ArrayList<ServisAutomobila> servisAutomobila) {
+		this.servisAutomobila = servisAutomobila;
+	}
 
 	@Override
 	public String toString() {
-		return "ServisnaKnjizica [servisi=" + servisi + "]";
+		return "ServisnaKnjizica [idKnjizica=" + idKnjizica + ", automobili=" + automobili + ", servisAutomobila="
+				+ servisAutomobila + "]";
 	}
 
 
 
+	
 
-	public ArrayList<ServisAutomobila> getServisi() {
-		return servisi;
-	}
 
-	public void setServisi(ArrayList<ServisAutomobila> servisi) {
-		this.servisi = servisi;
-	}
-	*/
+
+
+
+	
 	
 }
