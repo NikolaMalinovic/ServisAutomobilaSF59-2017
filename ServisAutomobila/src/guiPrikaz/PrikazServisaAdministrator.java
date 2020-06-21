@@ -62,7 +62,7 @@ public class PrikazServisaAdministrator extends JFrame {
 		mainToolbar.add(btnDelete);
 		add(mainToolbar, BorderLayout.NORTH);
 		
-		String[] zaglavlje = new String[] {"Identifikacioni kod","Vlasnik","Marka","Model","Godina proizvodnje","Zapremina motora","Snaga motora","Vrsta goriva","Serviser","Termin","Opis","Deo","Status","Servisna knjizica"};
+		String[] zaglavlje = new String[] {"Identifikacioni kod","Vlasnik","Marka","Model","Godina proizvodnje","Zapremina motora","Snaga motora","Vrsta goriva","Serviser","Termin","Opis","Status","Deo","Servisna knjizica"};
 		Object[][] podaci = new Object[this.servis.getServise().size()][zaglavlje.length];
 		
 		for(int i=0; i<this.servis.getServise().size(); i++) {
@@ -123,7 +123,7 @@ public class PrikazServisaAdministrator extends JFrame {
 						ServisAutomobilaForma sF = new ServisAutomobilaForma(servis, s);
 						sF.setVisible(true);
 					}else {
-						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabrani automobil.", "Greska", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Nije moguce pronaci servis.", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				
@@ -141,14 +141,14 @@ public class PrikazServisaAdministrator extends JFrame {
 					String id = model.getValueAt(red, 0).toString();
 					ServisAutomobila s = servis.nadjiServis(id);
 					if(s != null) {
-						int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete automobil", s.getIdentifikacioniKod() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+						int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete servis", s.getIdentifikacioniKod() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
 						if(izbor == JOptionPane.YES_OPTION) {
 							servis.getServise().remove(s);
 							model.removeRow(red);
 							servis.snimiServisAutomobila();
 						}
 					}else {
-						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabrani automobil!", "Greska", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabrani servis!", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				

@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import korisnici.Musterija;
 import net.miginfocom.swing.MigLayout;
 import servis.Servis;
 import servisi.Automobil;
@@ -24,8 +25,10 @@ public class AutomobiliForma extends JFrame {
 	
 	private JLabel lblId = new JLabel("Identifikacioni kod");
 	private JTextField txtId = new JTextField(10);
+//	private JLabel lblVlasnik = new JLabel("Vlasnik");
+//	private JTextField txtVlasnik = new JTextField(20);
 	private JLabel lblVlasnik = new JLabel("Vlasnik");
-	private JTextField txtVlasnik = new JTextField(20);
+	private JComboBox<String> cbVlasnik = new JComboBox<String>();
 	private JLabel lblMarka = new JLabel("Marka automobila");
 	private JComboBox<MarkaAutomobila> cbMarka = new JComboBox<MarkaAutomobila>(MarkaAutomobila.values());
 	private JLabel lblModel = new JLabel("Model automobila");
@@ -38,8 +41,8 @@ public class AutomobiliForma extends JFrame {
 	private JTextField txtSnagaMotora = new JTextField(10);
 	private JLabel lblVrstaGoriva = new JLabel("Vrsta goriva");
 	private JComboBox<VrstaGoriva> cbVrstaGoriva = new JComboBox<VrstaGoriva>(VrstaGoriva.values());
-	private JLabel lblIdKnjizice = new JLabel("Identifikacioni kod knjizice");
-	private JTextField txtIdKnjizice = new JTextField(10);
+//	private JLabel lblIdKnjizice = new JLabel("Identifikacioni kod knjizice");
+//	private JTextField txtIdKnjizice = new JTextField(10);
 	
 	
 	private JButton btnOk = new JButton("OK");
@@ -52,9 +55,9 @@ public class AutomobiliForma extends JFrame {
 		this.servis = servis;
 		this.automobil = automobil;
 		if(this.automobil == null) {
-			setTitle("Kreiranje novog dela");
+			setTitle("Kreiranje novog automobila");
 		}else {
-			setTitle("Izmena podataka -" + this.automobil.getMarka());
+			setTitle("Izmena podataka -" + this.automobil.getIdentifikacioniKod());
 		}
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -68,37 +71,38 @@ public class AutomobiliForma extends JFrame {
 		MigLayout layout = new MigLayout("wrap 2");
 		setLayout(layout);
 		
+		cbVlasnik.addItem("/");
+		for(Musterija musterija : servis.getMusterija()) {
+			cbVlasnik.addItem(musterija.getKorIme());
+		}
+		
 		if(this.automobil != null) {
 			txtId.setText(this.automobil.getIdentifikacioniKod());
 			txtId.setEnabled(false);
-			txtVlasnik.setText(this.automobil.getVlasnik());
+		//	txtVlasnik.setText(this.automobil.getVlasnik());
 			txtGodinaProizvodnje.setText(String.valueOf(this.automobil.getGodinaProizvodnje()));
 			txtZapreminaMotora.setText(String.valueOf(this.automobil.getZapreminaMotora()));
 			txtSnagaMotora.setText(String.valueOf(this.automobil.getSnagaMotora()));
-			txtIdKnjizice.setText(this.automobil.getIdentifikacioniKod());
-			txtIdKnjizice.setEnabled(false);
+	//		txtIdKnjizice.setText(this.automobil.getIdentifikacioniKod());
+	//		txtIdKnjizice.setEnabled(false);
 			
 		}
 		
 		add(lblId); add(txtId);
-		add(lblVlasnik); add(txtVlasnik);
+		add(lblVlasnik); add(cbVlasnik);
 		add(lblMarka); add(cbMarka);
 		add(lblModel); add(cbModel);
 		add(lblGodinaProizvodnje); add(txtGodinaProizvodnje);
 		add(lblZapreminaMotora); add(txtZapreminaMotora);
 		add(lblSnagaMotora);	add(txtSnagaMotora);
 		add(lblVrstaGoriva);	add(cbVrstaGoriva);
-		add(lblIdKnjizice);		add(txtIdKnjizice);
+	//	add(lblIdKnjizice);		add(txtIdKnjizice);
 		add(new JLabel()); add(btnOk,"split 2"); add(btnCancel);
 	}
 	private boolean validacija() {
 		boolean ok = true;
 		
-		if(txtVlasnik.getText().trim().equals("")) {
-			JOptionPane.showMessageDialog(null, 
-					"Morate uneti ime vlasnika", "Greska", JOptionPane.WARNING_MESSAGE);
-			ok = false;
-		}
+		
 		if(txtGodinaProizvodnje.getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, 
 					"Morate uneti godinu proizvodnje", "Greska", JOptionPane.WARNING_MESSAGE);
@@ -150,7 +154,7 @@ public class AutomobiliForma extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (validacija() == true) {
 					String id = txtId.getText().trim();
-					String vlasnik = txtVlasnik.getText().trim();
+					String vlasnik = cbVlasnik.getSelectedItem().toString();
 					String markaInt = cbMarka.getSelectedItem().toString().trim();
 					MarkaAutomobila marka = MarkaAutomobila.valueOf(markaInt);
 					String modelInt = cbModel.getSelectedItem().toString().trim();

@@ -2,6 +2,7 @@ package servisi;
 
 public class ServisniDeo {
 
+	public String identifikacioniKodServisa;
 	public MarkaAutomobila marka;
 	public ModelAutomobila model;
 	public String deo;
@@ -9,6 +10,7 @@ public class ServisniDeo {
 	
 	public ServisniDeo() {
 		super();
+		this.identifikacioniKodServisa = "";
 		this.marka = MarkaAutomobila.FIAT;
 		this.model = ModelAutomobila.STILO;
 		this.deo = "";
@@ -18,12 +20,27 @@ public class ServisniDeo {
 	
 	
 	
-	public ServisniDeo(MarkaAutomobila marka, ModelAutomobila model, String deo, double cena) {
+	public ServisniDeo(String identifikacioniKodServisa,MarkaAutomobila marka, ModelAutomobila model, String deo, double cena) {
 		super();
+		this.identifikacioniKodServisa = identifikacioniKodServisa;
 		this.marka = marka;
 		this.model = model;
 		this.deo = deo;
 		this.cena = cena;
+	}
+
+
+
+
+	public String getIdentifikacioniKodServisa() {
+		return identifikacioniKodServisa;
+	}
+
+
+
+
+	public void setIdentifikacioniKodServisa(String identifikacioniKodServisa) {
+		this.identifikacioniKodServisa = identifikacioniKodServisa;
 	}
 
 
@@ -64,7 +81,7 @@ public class ServisniDeo {
 
 	@Override
 	public String toString() {
-		return "ServisniDeo [marka=" + marka + ", model=" + model + ", deo=" + deo + ", cena=" + cena + "]";
+		return "ServisniDeo [identifikacioniKodSerivsa=" + identifikacioniKodServisa + ",marka=" + marka + ", model=" + model + ", deo=" + deo + ", cena=" + cena + "]";
 	}
 	
 	

@@ -27,7 +27,7 @@ public class GlavniProzorServiser extends JFrame {
 	public GlavniProzorServiser(Servis servis, Korisnici prijavljenKorisnik) {
 		this.servis = servis;
 		this.prijavljeniKorisnik = prijavljeniKorisnik;
-		setTitle("Servis - " + prijavljenKorisnik.getIme()+" "+prijavljenKorisnik.getPrezime()+" "+prijavljenKorisnik.getUloga());
+		setTitle("Servis automobila - " + prijavljenKorisnik.getIme()+" "+prijavljenKorisnik.getPrezime()+" "+prijavljenKorisnik.getUloga());
 		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension resolution = toolkit.getScreenSize();
@@ -65,8 +65,8 @@ public class GlavniProzorServiser extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-		//		PrikazServisaServiser pSs = new PrikazServisaServiser(servis,prijavljeniKorisnik);
-			//	pSs.setVisible(true);
+				PrikazServisaServiser pSs = new PrikazServisaServiser(servis, null);
+				pSs.setVisible(true);
 			}
 		});
 		odjavaItem.addActionListener(new ActionListener() {

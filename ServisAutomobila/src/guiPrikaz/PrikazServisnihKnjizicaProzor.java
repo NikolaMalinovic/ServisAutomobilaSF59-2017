@@ -66,9 +66,12 @@ public class PrikazServisnihKnjizicaProzor extends JFrame {
 		String[] zaglavlje = new String[] {"Identifikacioni kod knjizice","Identifikacioni kod automobila"};
 		Object[][] podaci = new Object[this.servis.getKnjizice().size()][zaglavlje.length];
 		
+		
 		for(int i=0; i<this.servis.getKnjizice().size(); i++) {
 			ServisnaKnjizica servisnaKnjizica = this.servis.getKnjizice().get(i);
+		//	Automobil automobil = servis.pronadjiAutomobil(servisnaKnjizica);
 			podaci[i][0] = servisnaKnjizica.getIdKnjizica();
+			podaci[i][1] = servisnaKnjizica.getAutomobili();
 			
 			
 		}
@@ -109,7 +112,7 @@ public class PrikazServisnihKnjizicaProzor extends JFrame {
 						ServisneKnjiziceForma sF = new ServisneKnjiziceForma(servis, servisnaKnjizica);
 						sF.setVisible(true);
 					}else {
-						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabrani automobil.", "Greska", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranu knjizicu!", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				
@@ -127,14 +130,14 @@ public class PrikazServisnihKnjizicaProzor extends JFrame {
 					String id = model.getValueAt(red, 0).toString();
 					ServisnaKnjizica servisnaKnjizica = servis.nadjiKnjizicu(id);
 					if(id != null) {
-						int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete automobil", servisnaKnjizica.getIdKnjizica() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+						int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete servisnu knjizicu", servisnaKnjizica.getIdKnjizica() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
 						if(izbor == JOptionPane.YES_OPTION) {
 							servis.getAutomobil().remove(id);
 							model.removeRow(red);
 							servis.snimiServisnuKnjizicu();
 						}
 					}else {
-						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabrani automobil!", "Greska", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranu knjizicu!", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				

@@ -1,2 +1,3 @@
-001|Nikola Malinovic|1|1|2005|2200|105|1|Nenad Ralic|02/06/2020 15:27:05|opis|status|Kocnice|001
-002|Marinko Malinovic|3|3|2013|2500|155|2|Nenad Ralic|03/06/2020 15:27:05|opis|status|Kvacilo|001
+001|Nikola Malinovic|1|1|2005|2200|105|1|/|02/06/2020 15:27:05|ddadada|Kocnice|Zavrseno|001
+002|Marinko Malinovic|3|3|2013|2500|155|2|Nenad Ralic|03/06/2020 15:27:05|opis|Kvacilo|Zavrseno|001
+003|Milos Tomac|1|1|2017|2500|155|1|ralic|/|Imam problem sa kocenjem|/|/|001

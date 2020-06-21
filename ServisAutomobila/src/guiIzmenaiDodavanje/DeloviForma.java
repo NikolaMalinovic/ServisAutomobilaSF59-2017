@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import korisnici.Musterija;
 import korisnici.Pol;
 import korisnici.Serviser;
 import net.miginfocom.swing.MigLayout;
@@ -20,6 +21,8 @@ import servisi.ServisniDeo;
 
 public class DeloviForma extends JFrame {
 
+	private JLabel lblIdServisa = new JLabel("Identifikacioni kod servisa");
+	private JComboBox<String> cbIdServisa = new JComboBox<String>();
 	private JLabel lblMarka = new JLabel("Marka automobila");
 	private JComboBox<MarkaAutomobila> cbMarka = new JComboBox<MarkaAutomobila>(MarkaAutomobila.values());
 	private JLabel lblModel = new JLabel("Model automobila");
@@ -55,11 +58,17 @@ public class DeloviForma extends JFrame {
 		MigLayout layout = new MigLayout("wrap 2");
 		setLayout(layout);
 		
+		cbIdServisa.addItem("/");
+		for(ServisniDeo servisniDeo : servis.getDelovi()) {
+			cbIdServisa.addItem(servisniDeo.getIdentifikacioniKodServisa());
+		}
+		
 		if(this.servisniDeo != null) {
 			txtOpis.setText(this.servisniDeo.getDeo());
 			txtCena.setText(String.valueOf(this.servisniDeo.getCena()));
 		}
 		
+		add(lblIdServisa); add(cbIdServisa);
 		add(lblMarka); add(cbMarka);
 		add(lblModel); add(cbModel);
 		add(lblOpis); add(txtOpis);
@@ -95,6 +104,7 @@ public class DeloviForma extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (validacija() == true) {
+					String idServisa = cbIdServisa.getSelectedItem().toString();
 					String markaInt = cbMarka.getSelectedItem().toString().trim();
 					MarkaAutomobila marka = MarkaAutomobila.valueOf(markaInt);
 					String modelInt = cbModel.getSelectedItem().toString().trim();
@@ -104,9 +114,10 @@ public class DeloviForma extends JFrame {
 					
 					if (servisniDeo == null) {
 						
-						servisniDeo = new ServisniDeo(marka,model,opis,cena);
+						servisniDeo = new ServisniDeo(idServisa,marka,model,opis,cena);
 						servis.getDelovi().add(servisniDeo);
 					}else {
+						servisniDeo.setIdentifikacioniKodServisa(idServisa);
 						servisniDeo.setMarka(marka);
 						servisniDeo.setModel(model);
 						servisniDeo.setDeo(opis);

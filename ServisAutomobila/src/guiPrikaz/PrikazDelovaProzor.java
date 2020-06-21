@@ -61,15 +61,16 @@ public class PrikazDelovaProzor extends JFrame {
 		mainToolbar.add(btnDelete);
 		add(mainToolbar, BorderLayout.NORTH);
 		
-		String[] zaglavlje = new String[] {"Marka","Model","Deo","Cena"};
+		String[] zaglavlje = new String[] {"Identifikacioni kod servisa","Marka","Model","Deo","Cena"};
 		Object[][] podaci = new Object[this.servis.getDelovi().size()][zaglavlje.length];
 		
 		for(int i=0; i<this.servis.getDelovi().size(); i++) {
 			ServisniDeo servisniDeo = this.servis.getDelovi().get(i);
-			podaci[i][0] = servisniDeo.getMarka();
-			podaci[i][1] = servisniDeo.getModel();
-			podaci[i][2] = servisniDeo.getDeo();
-			podaci[i][3] = servisniDeo.getCena();
+			podaci[i][0] = servisniDeo.getIdentifikacioniKodServisa();
+			podaci[i][1] = servisniDeo.getMarka();
+			podaci[i][2] = servisniDeo.getModel();
+			podaci[i][3] = servisniDeo.getDeo();
+			podaci[i][4] = servisniDeo.getCena();
 			
 		}
 		
@@ -104,8 +105,8 @@ public class PrikazDelovaProzor extends JFrame {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.","Greska",JOptionPane.WARNING_MESSAGE);
 				}else {
 					DefaultTableModel model = (DefaultTableModel)deloviTabela.getModel();
-					String naziv = model.getValueAt(red, 2).toString();
-					ServisniDeo s = servis.nadjiDeo(naziv);
+					String id = model.getValueAt(red, 0).toString();
+					ServisniDeo s = servis.nadjiDeo(id);
 					if(s != null) {
 						DeloviForma dF = new DeloviForma(servis, s);
 						dF.setVisible(true);
@@ -125,10 +126,10 @@ public class PrikazDelovaProzor extends JFrame {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
 					DefaultTableModel model = (DefaultTableModel)deloviTabela.getModel();
-					String naziv = model.getValueAt(red, 2).toString();
+					String naziv = model.getValueAt(red, 0).toString();
 					ServisniDeo s = servis.nadjiDeo(naziv);
 					if(s != null) {
-						int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete automobil", s.getModel() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+						int izbor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite da obrisete automobil", s.getIdentifikacioniKodServisa() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
 						if(izbor == JOptionPane.YES_OPTION) {
 							servis.getAutomobil().remove(s);
 							model.removeRow(red);

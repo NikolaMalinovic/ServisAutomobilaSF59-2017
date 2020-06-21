@@ -27,7 +27,7 @@ public class GlavniProzorMusterija extends JFrame {
 	public GlavniProzorMusterija(Servis servis, Korisnici prijavljeniKorisnik) {
 		this.servis = servis;
 		this.prijavljeniKorisnik = prijavljeniKorisnik;
-		setTitle("Restoran - "+ prijavljeniKorisnik.getIme()+" "+prijavljeniKorisnik.getPrezime()+" "+prijavljeniKorisnik.getUloga());
+		setTitle("Servis automobila - "+ prijavljeniKorisnik.getIme()+" "+prijavljeniKorisnik.getPrezime()+" "+prijavljeniKorisnik.getUloga());
 		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension resolution = toolkit.getScreenSize();
@@ -62,8 +62,8 @@ private void initActions() {
 		servisiItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			//	PrikazServisaMusterija pSm = new PrikazServisaMusterija(servis, prijavljeniKorisnik);
-			//	pSm.setVisible(true);
+				PrikazServisaMusterija pSm = new PrikazServisaMusterija(servis, null);
+				pSm.setVisible(true);
 			}
 		});
 		odjavaItem.addActionListener(new ActionListener() {

@@ -333,14 +333,16 @@ public class Servis {
 		this.deo.remove(deo);
 	}
 	
-	public ServisniDeo nadjiDeo(String naziv) {
+	public ServisniDeo nadjiDeo(String id) {
 		for(ServisniDeo servisniDeo: deo) {
-			if(servisniDeo.getDeo().equalsIgnoreCase(naziv)) {
+			if(servisniDeo.getIdentifikacioniKodServisa().equalsIgnoreCase(id)) {
 				return servisniDeo;
 			}
 		}
 		return null;
 	}
+	
+
 	
 	public void ucitajDelove() {
 		try {
@@ -349,13 +351,14 @@ public class Servis {
 			String line = null;
 			while((line = br.readLine()) != null) {
 				String[] split = line.split("\\|");
-				int markaInt = Integer.parseInt(split[0]);
+				String idServisa = split[0];
+				int markaInt = Integer.parseInt(split[1]);
 				MarkaAutomobila markaAutomobila = MarkaAutomobila.fromInt(markaInt);
-				int modelInt = Integer.parseInt(split[1]);
+				int modelInt = Integer.parseInt(split[2]);
 				ModelAutomobila modelAutomobila = ModelAutomobila.fromInt(modelInt);
-				String nazivDela = split[2];
-				double cena = Double.parseDouble(split[3]);
-				ServisniDeo servisniDeo = new ServisniDeo(markaAutomobila,modelAutomobila,nazivDela,cena);
+				String nazivDela = split[3];
+				double cena = Double.parseDouble(split[4]);
+				ServisniDeo servisniDeo = new ServisniDeo(idServisa,markaAutomobila,modelAutomobila,nazivDela,cena);
 				deo.add(servisniDeo);
 			}
 			br.close();
@@ -371,6 +374,7 @@ public class Servis {
 			String content = "";
 			for(ServisniDeo servisniDelovi: deo) {
 				content += 
+						servisniDelovi.getIdentifikacioniKodServisa() + "|" +
 						MarkaAutomobila.toInt(servisniDelovi.getMarka()) + "|" +
 						ModelAutomobila.toInt(servisniDelovi.getModel()) + "|" +
 						servisniDelovi.getDeo() + "|" +
