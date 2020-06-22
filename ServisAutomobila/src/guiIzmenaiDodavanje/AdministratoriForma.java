@@ -100,11 +100,23 @@ public class AdministratoriForma extends JFrame {
 	private boolean validacija() {
 		boolean ok = true;
 		
+		
+		
 		if(txtIme.getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, 
 					"Morate uneti ime korisnika", "Greska", JOptionPane.WARNING_MESSAGE);
 			ok = false;
+		}else if(administrator == null) {
+			String korisnickoIme = txtKorisnickoIme.getText().trim();
+			Administrator pronadjeni = servis.nadjiAdministratora(korisnickoIme);
+			if(pronadjeni != null) {
+				JOptionPane.showMessageDialog(null, 
+						"Administrator sa tim korisnickim imenom vec postoji!", "Greska", JOptionPane.WARNING_MESSAGE);
+				ok = false;
+			}
 		}
+		
+		
 		if(txtPrezime.getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, 
 					"Morate uneti prezime korisnika", "Greska", JOptionPane.WARNING_MESSAGE);
@@ -132,7 +144,7 @@ public class AdministratoriForma extends JFrame {
 		}
 		if(txtPlata.getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, 
-					"Morate uneti broj nagradnih poena ", "Greska", JOptionPane.WARNING_MESSAGE);
+					"Morate uneti platu ", "Greska", JOptionPane.WARNING_MESSAGE);
 			ok = false;
 		}
 		if(txtKorisnickoIme.getText().trim().equals("")) {

@@ -12,7 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-
+import korisnici.Administrator;
 import korisnici.Korisnici;
 import korisnici.Musterija;
 import korisnici.Pol;
@@ -106,7 +106,16 @@ public class MusterijeForma extends JFrame {
 			JOptionPane.showMessageDialog(null, 
 					"Morate uneti ime korisnika", "Greska", JOptionPane.WARNING_MESSAGE);
 			ok = false;
+		}else if(musterija == null) {
+			String korisnickoIme = txtKorisnickoIme.getText().trim();
+			Musterija pronadjeni = servis.nadjiMusteriju(korisnickoIme);
+			if(pronadjeni != null) {
+				JOptionPane.showMessageDialog(null, 
+						"Musterija sa tim korisnickim imenom vec postoji!", "Greska", JOptionPane.WARNING_MESSAGE);
+				ok = false;
+			}
 		}
+		
 		if(txtPrezime.getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, 
 					"Morate uneti prezime korisnika", "Greska", JOptionPane.WARNING_MESSAGE);

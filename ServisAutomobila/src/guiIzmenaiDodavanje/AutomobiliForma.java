@@ -102,6 +102,19 @@ public class AutomobiliForma extends JFrame {
 	private boolean validacija() {
 		boolean ok = true;
 		
+		if(txtId.getText().trim().equals("")) {
+			JOptionPane.showMessageDialog(null, 
+					"Morate uneti id automobila", "Greska", JOptionPane.WARNING_MESSAGE);
+			ok = false;
+		}else if(automobil == null) {
+			String idAutomobila = txtId.getText().trim();
+			Automobil pronadjeni = servis.nadjiAutomobil(idAutomobila);
+			if(pronadjeni != null) {
+				JOptionPane.showMessageDialog(null, 
+						"Automobil sa tim id vec postoji!", "Greska", JOptionPane.WARNING_MESSAGE);
+				ok = false;
+			}
+		}
 		
 		if(txtGodinaProizvodnje.getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, 

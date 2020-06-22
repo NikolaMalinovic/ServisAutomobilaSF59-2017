@@ -109,7 +109,16 @@ public class ServiseriForma extends JFrame {
 			JOptionPane.showMessageDialog(null, 
 					"Morate uneti ime korisnika", "Greska", JOptionPane.WARNING_MESSAGE);
 			ok = false;
+		}else if(serviser == null) {
+			String korisnickoIme = txtKorisnickoIme.getText().trim();
+			Serviser pronadjeni = servis.nadjiServisera(korisnickoIme);
+			if(pronadjeni != null) {
+				JOptionPane.showMessageDialog(null, 
+						"Serviser sa tim korisnickim imenom vec postoji!", "Greska", JOptionPane.WARNING_MESSAGE);
+				ok = false;
+			}
 		}
+		
 		if(txtPrezime.getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, 
 					"Morate uneti prezime korisnika", "Greska", JOptionPane.WARNING_MESSAGE);

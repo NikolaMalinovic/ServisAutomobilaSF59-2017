@@ -74,10 +74,22 @@ public class ServisneKnjiziceForma extends JFrame {
 	private boolean validacija() {
 		boolean ok = true;
 		
+		
+		
+		
+		
 		if(txtIdKnjizica.getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, 
-					"Morate uneti  id", "Greska", JOptionPane.WARNING_MESSAGE);
+					"Morate uneti  id knjizice", "Greska", JOptionPane.WARNING_MESSAGE);
 			ok = false;
+		}else if(servisnaKnjizica == null) {
+			String idKnjizice = txtIdKnjizica.getText().trim();
+			ServisnaKnjizica pronadjeni = servis.nadjiKnjizicu(idKnjizice);
+			if(pronadjeni != null) {
+				JOptionPane.showMessageDialog(null, 
+						"Servisna knjizica sa tim id vec postoji!", "Greska", JOptionPane.WARNING_MESSAGE);
+				ok = false;
+			}
 		}
 		
 		return ok;
